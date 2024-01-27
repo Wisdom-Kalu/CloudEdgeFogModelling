@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated one -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="saproject.one.presentation.OneModelWizardID"
+            name="%_UI_OneModelWizard_label"
+            class="saproject.one.presentation.OneModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/OneModelFile.gif">
+         <description>%_UI_OneModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated one -->
+      <editor
+            id="saproject.one.presentation.OneEditorID"
+            name="%_UI_OneEditor_label"
+            icon="icons/full/obj16/OneModelFile.gif"
+            extensions="one"
+            class="saproject.one.presentation.OneEditor"
+            contributorClass="saproject.one.presentation.OneActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
