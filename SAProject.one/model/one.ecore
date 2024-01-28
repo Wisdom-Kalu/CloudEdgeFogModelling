@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="one" nsURI="http://www.example.org/one" nsPrefix="one">
+  <eClassifiers xsi:type="ecore:EClass" name="LocalStorage" eSuperTypes="#//StorageType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EmbeddedFlashMemory" eSuperTypes="#//LocalStorage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SSDs" eSuperTypes="#//LocalStorage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NVMe" eSuperTypes="#//LocalStorage"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FileSystems" eSuperTypes="#//StorageType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IPFS" eSuperTypes="#//FileSystems"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NoSQL" eSuperTypes="#//StorageType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NewSQL" eSuperTypes="#//StorageType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Document" eSuperTypes="#//NoSQL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Column" eSuperTypes="#//NoSQL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="KeyValue" eSuperTypes="#//NoSQL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Graph" eSuperTypes="#//NoSQL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Historical" eSuperTypes="#//NewSQL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RealTime" eSuperTypes="#//NewSQL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Stream" eSuperTypes="#//NewSQL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TimeStamp" eSuperTypes="#//NewSQL"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProcessingType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Batch" eSuperTypes="#//ProcessingType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RealTimeProcessing" eSuperTypes="#//ProcessingType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StorageType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataArchitecture">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="component" lowerBound="1"
+        upperBound="-1" eType="#//Component" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="links" lowerBound="1" upperBound="-1"
+        eType="#//Connection" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Component">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="componentName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="computingUnit" lowerBound="1"
+        upperBound="-1" eType="#//ComputingUnit" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="behavior" eType="#//NodeBehavior"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataport" lowerBound="1"
+        upperBound="-1" eType="#//DataPort" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1"
+        eType="#//Connection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outgoing" upperBound="-1"
+        eType="#//Connection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ComputingUnit">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="balancer" eType="#//LoadBalancer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="locationtype" lowerBound="1"
+        eType="#//DataLocation" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="storagetype" lowerBound="1"
+        upperBound="-1" eType="#//StorageType" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processingtype" upperBound="-1"
+        eType="#//ProcessingType" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Cloud" eSuperTypes="#//DataLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Fog" eSuperTypes="#//DataLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Edge" eSuperTypes="#//DataLocation"/>
+  <eClassifiers xsi:type="ecore:EClass" name="LoadBalancer"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Connection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="destination" lowerBound="1"
+        eType="#//InDataPort"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
+        eType="#//OutDataPort"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//Component"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="connectionType" lowerBound="1"
+        eType="#//ConnectionType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="networkProtocol" lowerBound="1"
+        eType="#//NetworkProtocols"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NetworkProtocols"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MQTT" eSuperTypes="#//NetworkProtocols"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TCP_IP" eSuperTypes="#//NetworkProtocols"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PublisherSubscriberConnection" eSuperTypes="#//ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ClientServerConnection" eSuperTypes="#//ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PushPull" eSuperTypes="#//ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="NodeBehavior"/>
+  <eClassifiers xsi:type="ecore:EClass" name="InDataPort" eSuperTypes="#//DataPort"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutDataPort" eSuperTypes="#//DataPort"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataPort"/>
+  <eClassifiers xsi:type="ecore:EClass" name="RequestResponse" eSuperTypes="#//ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="HTTP_HTTPS" eSuperTypes="#//NetworkProtocols"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FTP" eSuperTypes="#//NetworkProtocols"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PointToPoint" eSuperTypes="#//ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StreamProcessing" eSuperTypes="#//ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AsynchronousRequestReply" eSuperTypes="#//ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="WebSocket" eSuperTypes="#//ConnectionType"/>
+  <eClassifiers xsi:type="ecore:EClass" name="MessageQueueing" eSuperTypes="#//ConnectionType"/>
+</ecore:EPackage>
