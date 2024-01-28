@@ -47,7 +47,7 @@
         eType="#//DataLocation" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="storagetype" lowerBound="1"
         upperBound="-1" eType="#//StorageType" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="processingtype" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="processingtype" lowerBound="1" upperBound="-1"
         eType="#//ProcessingType" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Cloud" eSuperTypes="#//DataLocation"/>
